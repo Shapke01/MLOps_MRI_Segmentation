@@ -1,0 +1,19 @@
+services:
+  pytorch:
+    build:
+      context: ./containers/torch
+      dockerfile: Dockerfile
+    container_name: pytorch_container
+    volumes:
+      - ./logs:/root/runs
+    tty: true
+
+  tensorboard:
+    build:
+      context: ./containers/tensorboard
+      dockerfile: Dockerfile
+    container_name: tensorboard_container
+    volumes:
+      - ./logs:/app/logs
+    ports:
+      - "6006:6006" # Default TensorBoard port
