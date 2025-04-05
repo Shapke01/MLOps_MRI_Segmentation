@@ -1,0 +1,3 @@
+data/*.tar
+data/raw_images
+data/dataset.zip

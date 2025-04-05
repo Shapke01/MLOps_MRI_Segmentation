@@ -5,7 +5,10 @@ services:
       dockerfile: Dockerfile
     container_name: pytorch_container
     volumes:
-      - ./logs:/root/runs
+      - ./logs:/app/runs
+      - ./src:/app/src
+      - ./data:/app/data
+      - ./test.py/:/app/test.py
     tty: true
 
   tensorboard:

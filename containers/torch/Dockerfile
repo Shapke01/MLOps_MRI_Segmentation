@@ -4,4 +4,4 @@ FROM pytorch/pytorch:latest
 WORKDIR /app
 
 # Install TensorBoard
-RUN pip install --no-cache-dir tensorboard
+RUN pip install --no-cache-dir tensorboard pandas tqdm wget nibabel numpy
