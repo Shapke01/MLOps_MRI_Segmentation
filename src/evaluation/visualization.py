@@ -42,7 +42,26 @@ def makeGIF(scan, mask):
         # image.save(f"/app/data/tmp/plot{idx}_.jpg")  
     images[0].save("/app/data/tmp/animation.gif",save_all=True,append_images=images[1:],duration=50,loop=0)   
        
-        
+def plot_slices(scan, mask):
+    """
+    Plot slices of the scan and mask data.
+    """
+    fig, axes = plt.subplots(2, 5, figsize=(12, 6))
+    
+    non_zero_indices = np.any(scan != 0, axis=(1, 2))
+    non_zero_slices = scan[non_zero_indices]
+    non_zero_mask = mask[non_zero_indices]
+    
+    random_indices = np.random.choice(len(non_zero_slices), size=5, replace=False)
+    random_indices.sort()
+    
+    for i, idx in enumerate(random_indices):
+        axes[0][i].imshow(non_zero_slices[idx], cmap="gray")
+        axes[0][i].set_title(f"Scan Slice {idx}")
+        axes[1][i].imshow(non_zero_mask[idx], cmap="viridis")
+        axes[1][i].set_title(f"Mask Slice {idx}")
+        plt.show()
+    plt.savefig("/app/data/tmp/plot.png")
     
     
         
@@ -50,4 +69,5 @@ if __name__ == "__main__":
     scan = nib.load("/app/data/raw_images/BraTS2021_00000/BraTS2021_00000_flair.nii.gz").get_fdata()
     mask = nib.load("/app/data/raw_images/BraTS2021_00000/BraTS2021_00000_seg.nii.gz").get_fdata()
     
-    makeGIF(scan, mask)
+    # makeGIF(scan, mask)
+    plot_slices(scan, mask)
