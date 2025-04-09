@@ -1,3 +1,6 @@
 data/*.tar
 data/raw_images
 data/dataset.zip
+data/train
+data/valid
+data/test

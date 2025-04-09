@@ -310,3 +310,6 @@ if __name__ == "__main__":
     print(f"  Training samples: {len(data_loader.train_dataset)}")
     print(f"  Validation samples: {len(data_loader.valid_dataset)}")
     print(f"  Test samples: {len(data_loader.test_dataset)}")
+
+    train_features, train_labels = next(iter(data_loader.train_loader))
+    print(train_labels)
